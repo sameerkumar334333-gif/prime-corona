@@ -1,294 +1,334 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star, CheckCircle2, Zap, Target, Activity, Plus } from 'lucide-react';
+import {
+  Rocket, AlertTriangle, Layers, Cpu,
+  XCircle, CheckCircle2, ChevronRight,
+  Target, Eye, Search, Zap, Star
+} from 'lucide-react';
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 15 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: { staggerChildren: 0.15 }
   }
 };
 
 function App() {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 17, seconds: 40 });
   const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        let { minutes, seconds } = prev;
-        if (seconds > 0) { seconds--; }
-        else {
-          seconds = 59;
-          if (minutes > 0) { minutes--; }
-        }
-        return { minutes, seconds };
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => setShowSticky(window.scrollY > 300);
+    const handleScroll = () => setShowSticky(window.scrollY > 400);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleFAQ = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.currentTarget.parentElement;
-    if (target) { target.classList.toggle('active'); }
-  };
-
   return (
-    <>
-      {/* 1. HERO SECTION (DARK TOP FOLD) */}
-      <div className="hero-wrapper bg-dark-section">
+    <div style={{ paddingBottom: '100px' }}>
+
+      {/* 1. HERO SECTION */}
+      <section className="section" style={{ paddingTop: '3rem', paddingBottom: '4rem' }}>
         <div className="container">
-          <header className="brand-header border-b border-gray-800">
-            <div className="brand-title" style={{ color: '#fff' }}>Idea To Reality Workshop</div>
-          </header>
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="top-fold-container">
-            <div className="hero-badge">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-              LIVE 90 MINUTE BOOTCAMP
-            </div>
+            <motion.div variants={fadeInUp} className="hero-badge">
+              <span className="w-2 h-2 rounded-full" style={{ background: 'var(--orange)', animation: 'pulse 2s infinite' }}></span>
+              Live 90 Min Masterclass
+            </motion.div>
 
-            <motion.h1 variants={fadeInUp} className="heading-mega text-center">
-              Before You Burn ₹50k Building It—
-              Validate It In 60 Minutes.
+            <motion.h1 variants={fadeInUp} className="hero-headline">
+              Validate Your Startup <br />
+              <span className="gradient-text-orange">Before Building It.</span>
             </motion.h1>
 
-            <motion.p variants={fadeInUp} className="hero-subheadline text-muted-light text-center" style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
-              Stop guessing. Force users to prove demand with literal credit card swipes <span style={{ color: '#fff', borderBottom: '2px solid var(--accent-primary)' }}>BEFORE</span> you code anything.
+            <motion.p variants={fadeInUp} style={{ fontSize: '1.25rem', color: 'var(--text-muted)', textAlign: 'center', maxWidth: '700px', marginBottom: '3rem', fontWeight: 500 }}>
+              Stop guessing. Force users to prove demand with literal credit card swipes BEFORE you spend 3 months writing code.
             </motion.p>
 
-            <motion.div variants={fadeInUp} className="instructor-hero-card w-full">
-              <div className="instructor-img-box">
-                <div style={{ color: '#666', marginBottom: '0.25rem' }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="10" r="3" /><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" /></svg>
-                </div>
-                <div style={{ fontSize: '0.65rem', color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>UPLOAD PNG<br />800x1000px</div>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                <div style={{ color: 'var(--accent-primary)', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase' }}>Your Live Coach</div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#fff', lineHeight: 1.1 }}>[ Instructor Name ]</div>
-                <div style={{ fontSize: '0.9rem', color: '#A3A3A3', fontWeight: 500, marginBottom: '0.5rem' }}>India's Leading Startup Strategist</div>
-
-                <div style={{ display: 'grid', gap: '0.5rem', marginTop: '0.5rem', paddingTop: '0.75rem', borderTop: '1px solid #333' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>
-                    <Check size={14} color="var(--accent-primary)" strokeWidth={3} /> Trained over 400+ Founders
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>
-                    <Check size={14} color="var(--accent-primary)" strokeWidth={3} /> Killed 15+ Bad Ideas Live
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
-      </div>
 
-      {/* 2. STATS STRIP (Overlapping) */}
-      <div className="container" style={{ paddingBottom: '2rem' }}>
-        <div className="stats-strip">
-          <div className="stat-card">
-            <div className="icon"><Target size={24} /></div>
-            <div className="value">400+</div>
-            <div className="label">Founders Trained</div>
-          </div>
-          <div className="stat-card">
-            <div className="icon"><Activity size={24} /></div>
-            <div className="value">15+</div>
-            <div className="label">Bad Ideas Killed</div>
-          </div>
-          <div className="stat-card">
-            <div className="icon"><Zap size={24} /></div>
-            <div className="value">60min</div>
-            <div className="label">To Complete Clarity</div>
-          </div>
-          <div className="stat-card" style={{ background: 'var(--accent-primary)', color: '#fff', borderColor: 'var(--accent-primary)' }}>
-            <div className="flex gap-1 mb-2">
-              <Star size={20} fill="var(--accent-yellow)" color="var(--accent-yellow)" />
-              <Star size={20} fill="var(--accent-yellow)" color="var(--accent-yellow)" />
-              <Star size={20} fill="var(--accent-yellow)" color="var(--accent-yellow)" />
+        {/* 2. STATS STRIP */}
+        <div className="container" style={{ marginTop: '2rem' }}>
+          <div className="stats-strip-container">
+            <div className="glass-card mini-stat-card glow-card-cyan">
+              <div className="icon-wrapper"><AlertTriangle size={36} /></div>
+              <div className="stat-text">80% of Startups<br />Fail Quietly</div>
             </div>
-            <div className="value">4.9/5</div>
-            <div className="label" style={{ color: 'rgba(255,255,255,0.8)' }}>Average Rating</div>
+            <div className="glass-card mini-stat-card glow-card-orange">
+              <div className="icon-wrapper" style={{ color: 'var(--orange)' }}><Target size={36} /></div>
+              <div className="stat-text">₹50k Wasted<br />Before Validation</div>
+            </div>
+            <div className="glass-card mini-stat-card glow-card-cyan">
+              <div className="icon-wrapper"><Layers size={36} /></div>
+              <div className="stat-text">3-Step Proven<br />Validation System</div>
+            </div>
+            <div className="glass-card mini-stat-card glow-card-orange">
+              <div className="icon-wrapper" style={{ color: 'var(--orange)' }}><Cpu size={36} /></div>
+              <div className="stat-text">AI Powered<br />Testing Framework</div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* BODY WITH DOTTED BACKGROUND */}
-      <div className="bg-dotted">
+      {/* 3. PROBLEM SECTION */}
+      <section className="section">
+        <div className="container">
+          <h2 className="section-title">
+            Why do <span className="gradient-text-cyan">90% of Founders</span> Fail?
+          </h2>
 
-        {/* 3. PROBLEM LIST (Checkmarks Style from Ref 1) */}
-        <section className="section bg-white" style={{ background: '#fff' }}>
-          <div className="container">
-            <h2 className="heading-section">
-              Why exactly do startups fail?
-              <span className="underline"></span>
-            </h2>
+          <div className="problem-layout">
+            {/* Left: Pain Bullets */}
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div className="pain-bullet">
+                <AlertTriangle className="icon" size={24} />
+                <p><strong style={{ color: '#fff' }}>Building In Secret</strong><br />Spending 3 months writing code without talking to a single paying user.</p>
+              </div>
+              <div className="pain-bullet">
+                <AlertTriangle className="icon" size={24} />
+                <p><strong style={{ color: '#fff' }}>The "Mom Test" Fallacy</strong><br />Asking friends and family if your idea is good (they will always lie to you).</p>
+              </div>
+              <div className="pain-bullet">
+                <AlertTriangle className="icon" size={24} />
+                <p><strong style={{ color: '#fff' }}>Fake Validation</strong><br />Thinking a "waitlist" email sign-up means people will actually pay you money.</p>
+              </div>
+            </div>
 
-            <div style={{ maxWidth: '800px', margin: '0 auto', background: 'var(--bg-light)', padding: '2rem', borderRadius: '20px', border: '1px solid var(--border-light)' }}>
-              <ul className="list-check">
-                <li><CheckCircle2 size={24} className="check-icon" /> They spend 3 months writing code before talking to users.</li>
-                <li><CheckCircle2 size={24} className="check-icon" /> They launch quietly on a Tuesday to absolute crickets.</li>
-                <li><CheckCircle2 size={24} className="check-icon" /> They ask Mom if the idea is good (she always says yes).</li>
-                <li><CheckCircle2 size={24} className="check-icon" /> They spend ₹50,000 on Facebook Ads with zero validation.</li>
-                <li><CheckCircle2 size={24} className="check-icon" /> They build features users explicitly never asked for.</li>
+            {/* Right: Graphic Card */}
+            <div className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', border: '1px solid rgba(239, 68, 68, 0.3)', boxShadow: '0 0 30px rgba(239, 68, 68, 0.1)' }}>
+              <XCircle size={64} color="#EF4444" style={{ marginBottom: '1rem' }} />
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: '0.5rem' }}>The ₹50k Mistake</h3>
+              <p style={{ color: 'var(--text-muted)' }}>Founders spend thousands on servers, ads, and tools before getting their first ₹1 of validated revenue.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. VITAMIN VS PAINKILLER */}
+      <section className="section">
+        <div className="container">
+          <h2 className="section-title">Are you building a <span className="gradient-text-orange">Vitamin</span> or a <span className="gradient-text-cyan">Painkiller?</span></h2>
+
+          <div className="vit-vs-pain-grid">
+            <div className="glass-card vp-card vitamin">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                <XCircle size={32} color="#EF4444" />
+                <h3>The Vitamin Idea</h3>
+              </div>
+              <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>"Nice to have." Users like the concept but don't feel urgency to buy. Hard to sell, high churn, slow growth.</p>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontWeight: 600 }}>
+                <li style={{ color: '#EF4444' }}>× "We help you organize files better"</li>
+                <li style={{ color: '#EF4444' }}>× "We give you daily inspiration quotes"</li>
+              </ul>
+            </div>
+
+            <div className="glass-card vp-card painkiller">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                <CheckCircle2 size={32} color="var(--cyan)" />
+                <h3>The Painkiller Idea</h3>
+              </div>
+              <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>"Must have right now." Solves a bleeding neck problem. Users swipe their cards instantly. High retention.</p>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontWeight: 600 }}>
+                <li style={{ color: 'var(--cyan)' }}>✓ "We stop your AWS bill from leaking $5k/mo"</li>
+                <li style={{ color: 'var(--cyan)' }}>✓ "We automate 40hrs of manual tax filing"</li>
               </ul>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 5. 3-STEP VALIDATION FRAMEWORK (Numbered style Ref 2) */}
-        <section className="section bg-peach-soft">
-          <div className="container" style={{ maxWidth: '800px' }}>
-            <h2 className="heading-section">
-              What You Will Learn In 90 Mins?
-              <span className="underline"></span>
-            </h2>
+      {/* 5. 3-STEP FRAMEWORK */}
+      <section className="section">
+        <div className="container">
+          <h2 className="section-title">The Validation <span className="gradient-text-cyan">Blueprint</span></h2>
 
-            <div className="numbered-step-card">
-              <div className="num-box">01.</div>
-              <div className="content-box">
-                <h4>The Mom Test Extraction</h4>
-                <p>Stop asking "would you use this?" and learn the exact 3 specific questions that force users to reveal their painful truths.</p>
-              </div>
+          <div className="framework-grid">
+            <div className="glass-card step-card glow-card-orange">
+              <div className="step-num">Step 01</div>
+              <div className="step-icon"><Search size={28} /></div>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>The Mom Test</h4>
+              <p style={{ color: 'var(--text-muted)' }}>How to ask 3 specific questions that force users to reveal their actual purchasing intent, skipping the fake compliments.</p>
+              <div className="mini-outcome text-orange">+ Extract the real pain</div>
             </div>
 
-            <div className="numbered-step-card" style={{ borderLeft: '4px solid var(--accent-primary)' }}>
-              <div className="num-box">02.</div>
-              <div className="content-box">
-                <h4>₹500 Smoke Test Wireframe</h4>
-                <p>Live execution of building a shadow landing page with a fake checkout to measure literal credit card intent before building.</p>
-              </div>
+            <div className="glass-card step-card glow-card-cyan">
+              <div className="step-num" style={{ color: 'var(--cyan)' }}>Step 02</div>
+              <div className="step-icon"><Rocket size={28} /></div>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>The Smoke Test</h4>
+              <p style={{ color: 'var(--text-muted)' }}>Build a shadow landing page in 20 minutes to explicitly measure literal credit card clicks before your product exists.</p>
+              <div className="mini-outcome">+ Secure raw intent</div>
             </div>
 
-            <div className="numbered-step-card">
-              <div className="num-box">03.</div>
-              <div className="content-box">
-                <h4>The Competitor Intel Hack</h4>
-                <p>Ethically map your competitor's traffic flows to see precisely what messaging converts and what falls flat.</p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 6. COHORT PILLS (Ref 1 topics) */}
-        <section className="section bg-white" style={{ background: '#fff' }}>
-          <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
-            <h2 className="heading-section">
-              Bonus Topics Covered Live
-              <span className="underline"></span>
-            </h2>
-
-            <div className="pill-container">
-              <span className="pill-tag">B2B SaaS Pricing</span>
-              <span className="pill-tag">Waitlist Conversion Hacks</span>
-              <span className="pill-tag">Cold Email Deliverability</span>
-              <span className="pill-tag">No-Code Landing Pages</span>
-              <span className="pill-tag">Meta Ads for $5/Day</span>
-              <span className="pill-tag">Analytics Setup</span>
+            <div className="glass-card step-card glow-card-orange">
+              <div className="step-num">Step 03</div>
+              <div className="step-icon"><Eye size={28} /></div>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>Competitor Spy</h4>
+              <p style={{ color: 'var(--text-muted)' }}>Ethically tap into your competitor's ad traffic to see exactly what copy converts and what users are desperate for.</p>
+              <div className="mini-outcome text-orange">+ Steal winning angles</div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 9. VALUE STACK (Huge contrast box) */}
-        <section className="section pb-24">
-          <div className="container" style={{ maxWidth: '750px' }} id="checkout">
-            <div className="value-stack-box">
-              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <div style={{ display: 'inline-block', background: 'rgba(255,255,255,0.1)', color: '#fff', fontSize: '0.8rem', fontWeight: 800, padding: '0.5rem 1rem', borderRadius: '100px', textTransform: 'uppercase', marginBottom: '1rem' }}>
-                  🔥 Offer Ends Today
-                </div>
-                <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '0.5rem' }}>Total Value Stack</h2>
-                <p style={{ color: 'var(--text-muted-light)', fontWeight: 500 }}>Everything you get when you pre-book your seat right now.</p>
-              </div>
+      {/* 6. AI EDGE SECTION */}
+      <section className="section" style={{ padding: '2rem 0' }}>
+        <div className="container">
+          <div className="ai-edge-block">
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem' }}>Validate in <span className="gradient-text-orange">Hours</span>, Not Months.</h2>
+            <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>Leverage AI to write your copy, build your landing page, and generate your ad campaigns instantly.</p>
 
-              <div style={{ background: '#111', padding: '1.5rem', borderRadius: '16px', border: '1px solid #333', marginBottom: '2rem' }}>
-                <div className="value-row">
-                  <span style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}><CheckCircle2 size={16} color="var(--accent-primary)" /> Live 90 Min Masterclass</span>
-                  <span className="value-price">₹1,499</span>
-                </div>
-                <div className="value-row">
-                  <span style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}><CheckCircle2 size={16} color="var(--accent-primary)" /> Validation Notion Template</span>
-                  <span className="value-price">₹1,999</span>
-                </div>
-                <div className="value-row">
-                  <span style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}><CheckCircle2 size={16} color="var(--accent-primary)" /> Smoke-Test Swipe File</span>
-                  <span className="value-price">₹999</span>
-                </div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '1.5rem', marginTop: '0.5rem', borderTop: '2px solid #333' }}>
-                  <span style={{ fontSize: '1.25rem', fontWeight: 800 }}>Total Value</span>
-                  <span style={{ fontSize: '1.5rem', fontWeight: 900, color: '#A3A3A3', textDecoration: 'line-through' }}>₹4,497</span>
-                </div>
-              </div>
-
+            <div className="ai-mockup">
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-muted-light)', marginBottom: '0.5rem' }}>Today's Exclusive Price</div>
-                <div style={{ fontSize: '4.5rem', fontWeight: 900, color: 'var(--accent-primary)', lineHeight: 1, marginBottom: '2rem', textShadow: '0 0 40px rgba(255,68,0,0.4)' }}>
-                  ₹99
-                </div>
-                <a href="#checkout" className="btn-primary" style={{ padding: '1.5rem', fontSize: '1.25rem' }}>
-                  LOCK MY SEAT NOW FOR ₹99
-                </a>
-              </div>
-            </div>
-
-            {/* 11. FAQ ACCORDION */}
-            <div className="faq-wrap">
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 900, textAlign: 'center', marginBottom: '1.5rem' }}>Frequently Asked Questions</h3>
-              <div className="faq-item">
-                <div className="faq-header" onClick={toggleFAQ}>
-                  Do I need an idea to join?
-                  <Plus size={20} className="faq-icon" />
-                </div>
-                <div className="faq-content">No. We teach you how to start with a bleeding neck "Problem", rather than marrying a solution early.</div>
-              </div>
-              <div className="faq-item">
-                <div className="faq-header" onClick={toggleFAQ}>
-                  Is there a recording?
-                  <Plus size={20} className="faq-icon" />
-                </div>
-                <div className="faq-content">No. We do not provide replays. This forces commitment and ensures a high-trust environment.</div>
-              </div>
-              <div className="faq-item">
-                <div className="faq-header" onClick={toggleFAQ}>
-                  Refund policy?
-                  <Plus size={20} className="faq-icon" />
-                </div>
-                <div className="faq-content">Zero risk. If you don't feel it was worth 10X the ₹99 you paid, we refund you instantly.</div>
+                <Cpu size={48} color="rgba(0,240,255,0.5)" style={{ marginBottom: '1rem', margin: '0 auto' }} />
+                <div style={{ color: '#fff', fontWeight: 800, letterSpacing: '0.1em' }}>[ AI BUILDER MOCKUP UI ]</div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-      </div>
+      {/* 7. WALK AWAY WITH */}
+      <section className="section">
+        <div className="container">
+          <h2 className="section-title">What You <span className="gradient-text-cyan">Walk Away With</span></h2>
 
-      {/* 10. SPLIT COLOR STICKY CTA (Reference 1 exact style: Black timer left, Yellow CTA right) */}
+          <div className="walk-away-grid">
+            <div className="glass-card walk-away-card glow-card-cyan">
+              <div className="check-circle"><CheckCircle2 size={20} /></div>
+              <span>A bulletproof startup idea validation framework</span>
+            </div>
+            <div className="glass-card walk-away-card glow-card-orange">
+              <div className="check-circle" style={{ background: 'rgba(255,107,0,0.1)', color: 'var(--orange)' }}><CheckCircle2 size={20} /></div>
+              <span>Exact cold outreach scripts that get responses</span>
+            </div>
+            <div className="glass-card walk-away-card glow-card-cyan">
+              <div className="check-circle"><CheckCircle2 size={20} /></div>
+              <span>How to price your initial minimum viable offer</span>
+            </div>
+            <div className="glass-card walk-away-card glow-card-orange">
+              <div className="check-circle" style={{ background: 'rgba(255,107,0,0.1)', color: 'var(--orange)' }}><CheckCircle2 size={20} /></div>
+              <span>Step-by-step shadow testing checkout guide</span>
+            </div>
+            <div className="glass-card walk-away-card glow-card-cyan">
+              <div className="check-circle"><CheckCircle2 size={20} /></div>
+              <span>The "Fake Door" landing page template</span>
+            </div>
+            <div className="glass-card walk-away-card glow-card-orange">
+              <div className="check-circle" style={{ background: 'rgba(255,107,0,0.1)', color: 'var(--orange)' }}><CheckCircle2 size={20} /></div>
+              <span>Confidence to build ONLY what people pay for</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. AUTHORITY BLOCK */}
+      <section className="section">
+        <div className="container">
+          <div className="authority-layout">
+            <div className="auth-image glow-card-cyan glass-card">
+              <div style={{ textAlign: 'center', padding: '2rem' }}>
+                <Target size={48} color="#666" style={{ margin: '0 auto 1rem' }} />
+                <div style={{ color: '#666', fontWeight: 800, letterSpacing: '0.05em' }}>[ KISHAN SHARMA PNG ]<br />Aspect 3:4</div>
+              </div>
+            </div>
+
+            <div className="auth-content">
+              <div style={{ color: 'var(--text-muted)', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Your Live Coach</div>
+              <h3>Kishan Sharma</h3>
+              <span className="title text-cyan">India's Leading Startup Architect</span>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', marginBottom: '2rem' }}>With over 10 years of experience launching and scaling zero-to-one startups, I've spent millions on ads figuring out exactly what makes users swipe their credit cards. Now, I'm giving you the literal cheat codes.</p>
+
+              <div className="glass-card" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <div>
+                  <div style={{ display: 'flex', gap: '0.25rem', color: '#FACC15', marginBottom: '0.5rem' }}>
+                    <Star fill="currentColor" size={20} />
+                    <Star fill="currentColor" size={20} />
+                    <Star fill="currentColor" size={20} />
+                    <Star fill="currentColor" size={20} />
+                    <Star fill="currentColor" size={20} />
+                  </div>
+                  <div style={{ fontWeight: 800 }}>400+ Founders Trained</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Average 4.9/5 Rating</div>
+                </div>
+                <div style={{ width: '1px', height: '40px', background: 'var(--glass-border)' }}></div>
+                <div>
+                  <div style={{ fontWeight: 900, fontSize: '1.5rem', color: 'var(--orange)' }}>15+</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>Bad Ideas Killed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. PRICE CONTRAST */}
+      <section className="section" id="checkout">
+        <div className="container">
+          <div className="price-stack-container">
+            <div className="price-card glow-card-cyan">
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 900, textAlign: 'center', marginBottom: '2.5rem' }}>
+                Total Value <span className="gradient-text-orange">Stack</span>
+              </h2>
+
+              <ul className="value-stack-list">
+                <li>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><CheckCircle2 size={20} color="var(--cyan)" /> Live 90 Min Masterclass</span>
+                  <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>₹1,999</span>
+                </li>
+                <li>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><CheckCircle2 size={20} color="var(--cyan)" /> Idea Validation System Docs</span>
+                  <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>₹999</span>
+                </li>
+                <li>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><CheckCircle2 size={20} color="var(--cyan)" /> AI Landing Page Template</span>
+                  <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>₹999</span>
+                </li>
+                <li>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><CheckCircle2 size={20} color="var(--cyan)" /> Live Q&A and Hot Seating</span>
+                  <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>₹999</span>
+                </li>
+              </ul>
+
+              <div className="glass-card" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid var(--orange)' }}>
+                <div className="total-value">
+                  <span>Total Value</span>
+                  <del style={{ color: '#888' }}>₹4,996</del>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
+                  <span style={{ color: 'var(--cyan)', fontWeight: 700 }}>Exclusive Today's Price</span>
+                  <span style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--orange)', lineHeight: 1, textShadow: '0 0 20px rgba(255,107,0,0.5)' }}>₹99</span>
+                </div>
+              </div>
+
+              <a href="#checkout" className="btn-cta w-full" style={{ padding: '1.5rem', fontSize: '1.25rem' }}>
+                Reserve My Seat For ₹99
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. STICKY CTA */}
       <div className={`sticky-bar ${showSticky ? 'visible' : ''}`}>
         <div className="sticky-timer-zone">
-          <div className="offer-text">Offer Ends in</div>
-          <div className="time">{String(timeLeft.minutes).padStart(2, '0')}<span style={{ fontSize: '0.8rem', color: '#666', margin: '0 2px' }}>M</span> {String(timeLeft.seconds).padStart(2, '0')}<span style={{ fontSize: '0.8rem', color: '#666', margin: '0 2px' }}>S</span></div>
+          <div className="offer-text"><Zap size={10} style={{ display: 'inline', color: 'var(--orange)' }} /> Flash Sale Valid</div>
+          <div className="prices">
+            <del>₹1,999</del>
+            <span style={{ color: 'var(--orange)' }}>₹99</span>
+          </div>
         </div>
-        <a href="#checkout" className="sticky-cta-zone w-full">
-          Join Now At Just<br />
-          <span style={{ fontSize: '0.85rem' }}><del style={{ color: '#888', marginRight: '4px' }}>₹1999</del></span>
-          <span style={{ fontSize: '1.25rem' }}>₹99/-</span>
+        <a href="#checkout" className="btn-cta">
+          Reserve Seat <ChevronRight size={18} />
         </a>
       </div>
-    </>
+
+    </div>
   )
 }
 
