@@ -17,7 +17,13 @@ const staggerContainer = {
 
 function App() {
   const [timeLeft, setTimeLeft] = useState({ minutes: 12, seconds: 59 });
-  const [showSticky, setShowSticky] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    const notifyTimer = setTimeout(() => setShowToast(true), 3500); // Trigger after 3.5s
+    const hideTimer = setTimeout(() => setShowToast(false), 9000); // Hide after 9s
+    return () => { clearTimeout(notifyTimer); clearTimeout(hideTimer); };
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,12 +38,6 @@ function App() {
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => setShowSticky(window.scrollY > 400);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleFAQ = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -104,8 +104,8 @@ function App() {
 
             {/* FIRST FOLD BUTTON (Moved Below Coach) */}
             <motion.div variants={fadeInUp} style={{ margin: '2.5rem auto 0', maxWidth: '350px' }}>
-              <a href="#checkout" className="btn-small">
-                BOOK SPOT NOW AT ₹99 <ChevronRight size={18} />
+              <a href="#checkout" className="btn-small btn-jitter">
+                BOOK SPOT NOW AT ₹99 <ChevronRight className="slide-arrow" size={18} />
               </a>
               <div style={{ color: 'var(--text-muted-light)', fontSize: '0.8rem', fontWeight: 600, marginTop: '0.5rem' }}>
                 ⚡ Only 14 Seats Remaining
@@ -384,16 +384,27 @@ function App() {
             </div>
 
             {/* TRUST / GUARANTEE SECTION */}
-            <div className="guarantee-box" style={{ maxWidth: '800px', margin: '4rem auto 0', background: '#FFFBEB', border: '2px dashed #FCD34D', borderRadius: '24px', padding: '3rem 2rem', textAlign: 'center' }}>
-              <Shield size={48} color="var(--accent-yellow)" style={{ margin: '0 auto 1.5rem' }} />
-              <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem', color: '#B45309' }}>100% "No-Brainer" Guarantee</h3>
-              <p style={{ fontSize: '1.1rem', color: '#92400E', fontWeight: 500, lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
-                If you attend the entire 90-minute workshop and don't feel like you received at least 10X the value of your ₹99 investment, simply email us and we will refund your money instantly. <strong>No questions asked. The risk is entirely on me.</strong>
-              </p>
+            <div className="guarantee-box" style={{ maxWidth: '800px', margin: '4rem auto 0', background: '#FFFBEB', border: '2px solid #FCD34D', borderRadius: '32px', padding: '0', textAlign: 'center', overflow: 'hidden', boxShadow: '0 25px 50px rgba(0,0,0,0.05)' }}>
+              <div style={{ background: 'linear-gradient(135deg, #F59E0B, #B45309)', padding: '3.5rem 2rem 2.5rem', position: 'relative' }}>
+                <div className="guard-shield">
+                  <Shield size={64} color="#FFFBEB" strokeWidth={1.5} />
+                  <div className="shield-check"><Check size={32} color="#B45309" strokeWidth={3} /></div>
+                </div>
+                <h3 style={{ fontSize: '2.2rem', fontWeight: 900, color: '#fff', margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>100% "No-Brainer" Guarantee</h3>
+              </div>
+              <div style={{ padding: '3.5rem 2.5rem' }}>
+                <p style={{ fontSize: '1.15rem', color: '#92400E', fontWeight: 500, lineHeight: 1.6, maxWidth: '650px', margin: '0 auto' }}>
+                  If you attend the entire 90-minute workshop and don't feel like you received at least 10X the value of your ₹99 investment, simply email us and we will refund your money instantly. <strong>No questions asked. The risk is entirely on me.</strong>
+                </p>
+              </div>
             </div>
+          </div>
+        </section>
 
-            {/* FAQ ACCORDION */}
-            <div className="faq-wrap" style={{ maxWidth: '800px', margin: '5rem auto 0' }}>
+        {/* FAQ ACCORDION */}
+        <section className="section bg-white" id="faq">
+          <div className="container">
+            <div className="faq-wrap" style={{ maxWidth: '800px', margin: '0 auto' }}>
               <h3 style={{ fontSize: '1.8rem', fontWeight: 900, textAlign: 'center', marginBottom: '2rem' }}>Frequently Asked Questions</h3>
               <div className="faq-item">
                 <div className="faq-header" onClick={toggleFAQ}>
@@ -419,23 +430,40 @@ function App() {
             </div>
           </div>
         </section>
-
       </div>
 
-      {/* STICKY CTA CTA */}
-      <div className={`sticky-bar ${showSticky ? 'visible' : ''}`}>
+      {/* NOTIFICATION TOAST */}
+      <motion.div
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+        animate={{ opacity: showToast ? 1 : 0, y: showToast ? 0 : 50, scale: showToast ? 1 : 0.9 }}
+        transition={{ duration: 0.5, type: 'spring', bounce: 0.5 }}
+        className="founder-toast"
+        style={{ pointerEvents: showToast ? 'auto' : 'none' }}
+      >
+        <div className="toast-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Founder" loading="lazy" />
+        </div>
+        <div className="toast-content">
+          <div className="toast-title">8 Smart Founders</div>
+          <div className="toast-desc">just joined Idea To Reality Workshop</div>
+          <div className="toast-time">Just now</div>
+        </div>
+      </motion.div>
+
+      {/* STICKY CTA */}
+      <div className={`sticky-bar visible`}>
         <div className="sticky-timer-zone">
           <div className="offer-text" style={{ color: 'var(--accent-primary)' }}>Closing in</div>
           <div className="time">{String(timeLeft.minutes).padStart(2, '0')}<span style={{ fontSize: '0.8rem', color: '#666', margin: '0 2px' }}>M</span> {String(timeLeft.seconds).padStart(2, '0')}<span style={{ fontSize: '0.8rem', color: '#666', margin: '0 2px' }}>S</span></div>
         </div>
-        <a href="#checkout" className="sticky-cta-zone w-full" style={{ padding: '1rem' }}>
+        <a href="#checkout" className="sticky-cta-zone w-full">
           Join Now At Just<br />
           <span style={{ fontSize: '0.9rem' }}><del style={{ color: '#000', opacity: 0.6, marginRight: '4px' }}>₹1999</del></span>
-          <span style={{ fontSize: '1.3rem' }}>₹99/-</span>
+          <span style={{ fontSize: '1.3rem', marginLeft: '4px' }}>₹99/-</span>
         </a>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
