@@ -945,8 +945,8 @@ body {
 
 .founder-toast {
   position: fixed;
-  bottom: 120px;
-  left: 20px;
+  top: 20px;
+  right: 20px;
   background: var(--bg-white);
   border-radius: 12px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
@@ -1027,7 +1027,7 @@ body {
   .founder-toast {
     left: 10px;
     right: 10px;
-    bottom: 110px;
+    top: 20px;
     max-width: none;
   }
 
