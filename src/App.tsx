@@ -60,24 +60,24 @@ function App() {
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="text-center pb-8">
             <motion.div variants={fadeInUp} className="hero-badge">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-              STARTING THIS SUNDAY • 90 MIN BOOTCAMP
+              26 FEB 2026 • 90 MIN BOOTCAMP
             </motion.div>
 
             <motion.h1 variants={fadeInUp} className="heading-mega">
-              Stop Guessing & Building In Secret.<br />
-              Validate Your Idea In <span className="highlight">60 Minutes.</span>
+              Before You Burn ₹50k Building It— <br />
+              Validate It In <span className="highlight">60 Minutes.</span>
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="hero-subheadline">
-              Force massive market proof with literal credit card swipes <span style={{ color: '#fff', borderBottom: '2px solid var(--accent-primary)' }}>BEFORE</span> you burn ₹50,000 on development or Facebook Ads.
+              Force users to prove demand with literal credit card swipes <span style={{ color: '#fff', borderBottom: '2px solid var(--accent-primary)' }}>BEFORE</span> you code anything.
             </motion.p>
 
-            {/* FIRST FOLD BUTTON (Missing specifically requested!) */}
-            <motion.div variants={fadeInUp} style={{ margin: '2rem auto 0', maxWidth: '350px' }}>
-              <a href="#checkout" className="btn-primary" style={{ animation: 'pulse-glow 2s infinite' }}>
-                BOOK SPOT NOW AT ₹99 <ChevronRight size={22} />
+            {/* FIRST FOLD BUTTON */}
+            <motion.div variants={fadeInUp} style={{ margin: '1.5rem auto 0', maxWidth: '350px' }}>
+              <a href="#checkout" className="btn-small">
+                BOOK SPOT NOW AT ₹99 <ChevronRight size={18} />
               </a>
-              <div style={{ color: 'var(--text-muted-light)', fontSize: '0.8rem', fontWeight: 600, marginTop: '0.75rem' }}>
+              <div style={{ color: 'var(--text-muted-light)', fontSize: '0.8rem', fontWeight: 600, marginTop: '0.5rem' }}>
                 ⚡ Only 14 Seats Remaining
               </div>
             </motion.div>

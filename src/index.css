@@ -76,35 +76,19 @@ body {
 
 /* HERO UNIQUE GRID & GRADIENT BACKGROUND */
 .hero-wrapper {
-  background: radial-gradient(circle at 50% 0%, rgba(255, 90, 31, 0.15) 0%, var(--bg-dark) 60%),
-    linear-gradient(rgba(10, 13, 20, 0.8), rgba(10, 13, 20, 1)),
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-  padding: 1.5rem 0 6rem;
+  background: var(--bg-dark);
+  padding: 1.5rem 0 5rem;
   position: relative;
   overflow: hidden;
 }
 
-.hero-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at bottom, transparent 40%, var(--bg-dark) 100%);
-  pointer-events: none;
-}
-
 /* TYPOGRAPHY */
 .heading-mega {
-  font-size: clamp(2.2rem, 8vw, 3.8rem);
+  font-size: clamp(1.8rem, 6vw, 3rem);
   font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-  margin-bottom: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
   position: relative;
 }
 
@@ -178,12 +162,36 @@ body {
 }
 
 .hero-subheadline {
-  font-size: clamp(1.1rem, 4vw, 1.25rem);
+  font-size: clamp(1rem, 4vw, 1.15rem);
   color: var(--text-muted-light);
   font-weight: 500;
-  line-height: 1.6;
-  max-width: 650px;
-  margin: 0 auto 2.5rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+/* BUTTONS */
+.btn-small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--accent-primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 15px rgba(255, 90, 31, 0.2);
+}
+
+.btn-small:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 90, 31, 0.3);
 }
 
 /* LIVE COACH HERO CARD */
