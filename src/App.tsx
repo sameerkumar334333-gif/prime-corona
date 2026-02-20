@@ -65,7 +65,13 @@ function App() {
               style={{ animation: 'floatSubtle 4s ease-in-out infinite' }}
             >
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}>Before You Burn ₹50k Building It— </motion.span><br />
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>Validate It In <span className="highlight">60 Minutes.</span></motion.span>
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>Validate It In <span className="highlight" style={{ position: 'relative', display: 'inline-block', zIndex: 1 }}>
+                <span style={{ position: 'relative', zIndex: 2 }}>60 Minutes.</span>
+                <svg className="animated-circle" viewBox="0 0 300 100" preserveAspectRatio="none" style={{ position: 'absolute', top: '-10%', left: '-5%', width: '110%', height: '120%', zIndex: 0, pointerEvents: 'none' }}>
+                  <path d="M 15 50 Q 80 15 150 15 T 285 50 Q 285 85 150 85 T 15 50 Z" fill="none" stroke="var(--accent-primary)" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+              </span>
+              </motion.span>
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="hero-subheadline">

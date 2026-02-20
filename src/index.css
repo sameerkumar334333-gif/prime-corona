@@ -980,3 +980,19 @@ body {
     font-size: 1.15rem !important;
   }
 }
+
+.animated-circle path {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: drawCircle 3s ease-in-out infinite alternate;
+}
+
+@keyframes drawCircle {
+  0% {
+    stroke-dashoffset: 800;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
