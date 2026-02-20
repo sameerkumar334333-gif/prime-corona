@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star, CheckCircle2, Zap, Target, Activity, Plus, ShieldCheck, TrendingUp, Users, Clock, Compass, ChevronRight, XCircle } from 'lucide-react';
+import { Check, Star, CheckCircle2, Zap, Target, Activity, Plus, ShieldCheck, TrendingUp, Users, Clock, Compass, ChevronRight, XCircle, Shield, Gift } from 'lucide-react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -350,8 +350,50 @@ function App() {
               </div>
             </div>
 
+            {/* BONUS SECTION (Extra Length) */}
+            <div className="bonus-section" style={{ maxWidth: '800px', margin: '4rem auto 0', background: 'var(--bg-white)', borderRadius: '24px', padding: '3rem 2rem', border: '1px solid var(--border-light)', boxShadow: '0 20px 40px rgba(0,0,0,0.05)' }}>
+              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', color: 'var(--accent-green)', padding: '0.5rem 1rem', borderRadius: '100px', fontWeight: 800, textTransform: 'uppercase', fontSize: '0.8rem', marginBottom: '1rem' }}>
+                  <Gift size={16} /> Fast-Action Bonuses
+                </div>
+                <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '0.5rem' }}>Register In Next 10 Mins To Unlock</h3>
+              </div>
+
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                <div style={{ display: 'flex', gap: '1rem', padding: '1.5rem', background: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                  <div style={{ width: '50px', height: '50px', background: 'var(--bg-white)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 10px rgba(0,0,0,0.05)', flexShrink: 0 }}>
+                    <Target size={24} color="var(--accent-primary)" />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-dark)', marginBottom: '0.25rem' }}>The "Silent Seller" Lead Magnet Template</h4>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-muted-dark)' }}>My personal notion database of 25+ lead magnets that actually convert traffic into hungry waitlists before building the core app.</p>
+                    <div style={{ marginTop: '0.5rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent-primary)' }}>Value: ₹1,500 (Yours FREE)</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: '1rem', padding: '1.5rem', background: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                  <div style={{ width: '50px', height: '50px', background: 'var(--bg-white)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 10px rgba(0,0,0,0.05)', flexShrink: 0 }}>
+                    <Users size={24} color="var(--accent-primary)" />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-dark)', marginBottom: '0.25rem' }}>100 Initial Users Cheatsheet</h4>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-muted-dark)' }}>A step-by-step PDF manual on exactly where and how to find your first 100 paying customers without spending a single rupee on ads.</p>
+                    <div style={{ marginTop: '0.5rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent-primary)' }}>Value: ₹2,000 (Yours FREE)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* TRUST / GUARANTEE SECTION */}
+            <div className="guarantee-box" style={{ maxWidth: '800px', margin: '4rem auto 0', background: '#FFFBEB', border: '2px dashed #FCD34D', borderRadius: '24px', padding: '3rem 2rem', textAlign: 'center' }}>
+              <Shield size={48} color="var(--accent-yellow)" style={{ margin: '0 auto 1.5rem' }} />
+              <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem', color: '#B45309' }}>100% "No-Brainer" Guarantee</h3>
+              <p style={{ fontSize: '1.1rem', color: '#92400E', fontWeight: 500, lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
+                If you attend the entire 90-minute workshop and don't feel like you received at least 10X the value of your ₹99 investment, simply email us and we will refund your money instantly. <strong>No questions asked. The risk is entirely on me.</strong>
+              </p>
+            </div>
+
             {/* FAQ ACCORDION */}
-            <div className="faq-wrap" style={{ maxWidth: '800px', margin: '4rem auto 0' }}>
+            <div className="faq-wrap" style={{ maxWidth: '800px', margin: '5rem auto 0' }}>
               <h3 style={{ fontSize: '1.8rem', fontWeight: 900, textAlign: 'center', marginBottom: '2rem' }}>Frequently Asked Questions</h3>
               <div className="faq-item">
                 <div className="faq-header" onClick={toggleFAQ}>
