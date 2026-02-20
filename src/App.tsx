@@ -62,9 +62,10 @@ function App() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="heading-mega"
+              style={{ animation: 'floatSubtle 4s ease-in-out infinite' }}
             >
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}>Before You Burn ₹50k Building It— </motion.span><br />
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>Validate It In <span className="highlight" style={{ display: 'inline-block', animation: 'floatSubtle 3s ease-in-out infinite' }}>60 Minutes.</span></motion.span>
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>Validate It In <span className="highlight">60 Minutes.</span></motion.span>
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="hero-subheadline">
