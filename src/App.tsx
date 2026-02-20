@@ -72,15 +72,7 @@ function App() {
               Force users to prove demand with literal credit card swipes <span style={{ color: '#fff', borderBottom: '2px solid var(--accent-primary)' }}>BEFORE</span> you code anything.
             </motion.p>
 
-            {/* FIRST FOLD BUTTON */}
-            <motion.div variants={fadeInUp} style={{ margin: '1.5rem auto 0', maxWidth: '350px' }}>
-              <a href="#checkout" className="btn-small">
-                BOOK SPOT NOW AT ₹99 <ChevronRight size={18} />
-              </a>
-              <div style={{ color: 'var(--text-muted-light)', fontSize: '0.8rem', fontWeight: 600, marginTop: '0.5rem' }}>
-                ⚡ Only 14 Seats Remaining
-              </div>
-            </motion.div>
+
 
             {/* COACH CARD */}
             <motion.div variants={fadeInUp} className="instructor-hero-card">
@@ -107,6 +99,16 @@ function App() {
                     <Check size={16} color="var(--accent-primary)" strokeWidth={3} /> generated ₹5Cr+ in Pre-sales
                   </div>
                 </div>
+              </div>
+            </motion.div>
+
+            {/* FIRST FOLD BUTTON (Moved Below Coach) */}
+            <motion.div variants={fadeInUp} style={{ margin: '2.5rem auto 0', maxWidth: '350px' }}>
+              <a href="#checkout" className="btn-small">
+                BOOK SPOT NOW AT ₹99 <ChevronRight size={18} />
+              </a>
+              <div style={{ color: 'var(--text-muted-light)', fontSize: '0.8rem', fontWeight: 600, marginTop: '0.5rem' }}>
+                ⚡ Only 14 Seats Remaining
               </div>
             </motion.div>
           </motion.div>
