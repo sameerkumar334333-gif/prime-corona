@@ -17,35 +17,7 @@ const staggerContainer = {
 
 function App() {
   const [timeLeft, setTimeLeft] = useState({ minutes: 12, seconds: 59 });
-  const [toastData, setToastData] = useState({ name: 'Akash', show: false, time: 'Just now' });
 
-  useEffect(() => {
-    const names = ['Akash', 'Raj', 'Neha', 'Priya', 'Amit', 'Vikram', 'Anjali', 'Rohan', 'Sneha', 'Rahul', 'Arjun', 'Simran'];
-    const times = ['Just now', '1m ago', '2m ago', 'Just now'];
-
-    let showTimeout: ReturnType<typeof setTimeout>;
-    let hideTimeout: ReturnType<typeof setTimeout>;
-
-    const showRandomToast = () => {
-      const randomName = names[Math.floor(Math.random() * names.length)];
-      const randomTime = times[Math.floor(Math.random() * times.length)];
-      setToastData({ name: randomName, show: true, time: randomTime });
-
-      hideTimeout = setTimeout(() => {
-        setToastData(prev => ({ ...prev, show: false }));
-        // Schedule next toast
-        showTimeout = setTimeout(showRandomToast, Math.floor(Math.random() * 8000) + 4000); // 4-12 seconds
-      }, 3500); // visible for 3.5s
-    };
-
-    // Initial trigger
-    showTimeout = setTimeout(showRandomToast, 2500);
-
-    return () => {
-      clearTimeout(showTimeout);
-      clearTimeout(hideTimeout);
-    };
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -85,9 +57,14 @@ function App() {
               26 FEB 2026 • 90 MIN BOOTCAMP
             </motion.div>
 
-            <motion.h1 variants={fadeInUp} className="heading-mega">
-              Before You Burn ₹50k Building It— <br />
-              Validate It In <span className="highlight">60 Minutes.</span>
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="heading-mega"
+            >
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}>Before You Burn ₹50k Building It— </motion.span><br />
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>Validate It In <span className="highlight" style={{ display: 'inline-block', animation: 'floatSubtle 3s ease-in-out infinite' }}>60 Minutes.</span></motion.span>
             </motion.h1>
 
             <motion.p variants={fadeInUp} className="hero-subheadline">
@@ -453,24 +430,6 @@ function App() {
           </div>
         </section>
       </div>
-
-      {/* NOTIFICATION TOAST */}
-      <motion.div
-        initial={{ opacity: 0, y: -50, scale: 0.9 }}
-        animate={{ opacity: toastData.show ? 1 : 0, y: toastData.show ? 0 : -50, scale: toastData.show ? 1 : 0.9 }}
-        transition={{ duration: 0.5, type: 'spring', bounce: 0.5 }}
-        className="founder-toast"
-        style={{ pointerEvents: toastData.show ? 'auto' : 'none' }}
-      >
-        <div className="toast-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Founder" loading="lazy" />
-        </div>
-        <div className="toast-content">
-          <div className="toast-title">New Founder Joined</div>
-          <div className="toast-desc"><strong style={{ color: 'var(--accent-primary)' }}>{toastData.name}</strong> just joined Idea To Reality</div>
-          <div className="toast-time">{toastData.time}</div>
-        </div>
-      </motion.div>
 
       {/* STICKY CTA */}
       <div className={`sticky-bar visible`}>
