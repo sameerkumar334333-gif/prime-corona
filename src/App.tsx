@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Shield, ArrowRight, Clock, Target, Plus, Star, Zap, Activity, MonitorPlay, AlertTriangle } from 'lucide-react';
+import { Check, Shield, ArrowRight, Clock, Target, Plus, Star, Zap, Activity, MonitorPlay, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
